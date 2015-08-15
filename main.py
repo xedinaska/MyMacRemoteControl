@@ -14,6 +14,7 @@ while 1:
         code = arduinoSerial.readline()
         keyName = keyCodesParser.getKeyName(code)
         handler.handle(keyName)
+
     except Exception as e:
         print(str(e))
 

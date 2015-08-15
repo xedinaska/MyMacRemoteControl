@@ -11,8 +11,7 @@ class KeyPressHandler:
     def handle(self, keyName):
 
         if keyName == 'OK':
-            self.systemEventManager.openApp('VLC')
-            self.systemEventManager.pressButton('f', 'command down')
+            self.systemEventManager.pressButton(125, 'using {command down}')
         elif keyName == '*':
             self.systemEventManager.openApp('Finder')
         elif keyName == 'ARR_DOWN':
@@ -20,6 +19,10 @@ class KeyPressHandler:
         elif keyName == 'ARR_UP':
             self.systemEventManager.pressButton(126, '')
         elif keyName == 'ARR_LEFT':
-            self.systemEventManager.pressButton(123, 'control down')
+            self.systemEventManager.pressButton(123, 'using {control down}')
         elif keyName == 'ARR_RIGHT':
-            self.systemEventManager.pressButton(124, 'control down')
+            self.systemEventManager.pressButton(124, 'using {control down}')
+        elif keyName == 0:
+            self.systemEventManager.pressButton('q', 'using {command down}')
+        elif keyName == '#':
+            self.systemEventManager.pressButton('f', 'using {command down, control down}')
