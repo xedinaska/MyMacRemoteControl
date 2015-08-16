@@ -1,4 +1,5 @@
 import os
+import subprocess
 
 
 class MacSystemEvent:
@@ -34,3 +35,12 @@ class MacSystemEvent:
             '
         """
         os.system(cmd)
+
+    def getActiveAPP(self):
+        cmd = """
+            tell application "System Events"
+                set activeApp to name of application processes whose frontmost is true
+            end tell
+        """
+        appName = subprocess.check_output(['osascript', '-e', cmd])
+        return appName.decode('UTF-8')

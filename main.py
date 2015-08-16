@@ -13,7 +13,8 @@ while 1:
     try:
         code = arduinoSerial.readline()
         keyName = keyCodesParser.getKeyName(code)
-        handler.handle(keyName)
+
+        print(handler.handle(keyName))
 
     except Exception as e:
         print(str(e))

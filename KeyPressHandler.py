@@ -10,6 +10,8 @@ class KeyPressHandler:
 
     def handle(self, keyName):
 
+        return self.systemEventManager.getActiveAPP()
+        """
         if keyName == 'OK':
             self.systemEventManager.pressButton(125, 'using {command down}')
         elif keyName == '*':
@@ -26,3 +28,4 @@ class KeyPressHandler:
             self.systemEventManager.pressButton('q', 'using {command down}')
         elif keyName == '#':
             self.systemEventManager.pressButton('f', 'using {command down, control down}')
+        """
