@@ -1,11 +1,13 @@
 from Mac import MacApplicationsManager
 from Windows import WindowsApplicationManager
+from sys import platform as _platform
 
 
 class OsResolver:
 
     osXType = 'MAC'
     windowsType = 'WINDOWS'
+    linuxType = 'Linux'
 
     def __init__(self):
         pass
@@ -19,4 +21,9 @@ class OsResolver:
             return WindowsApplicationManager.WindowsApplicationsManager()
 
     def getOsType(self):
-        return self.osXType
+        if _platform == "linux" or _platform == "linux2":
+            return self.linuxType
+        elif _platform == "darwin":
+            return self.osXType
+        elif _platform == "win32":
+            return self.windowsType
