@@ -1,4 +1,4 @@
-class KeyCodesParser:
+class HashCodeReader:
     codes = {
         b'FF629D\r\n': 'ARR_UP',
         b'FFA857\r\n': 'ARR_DOWN',

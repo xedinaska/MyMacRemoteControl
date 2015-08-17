@@ -1,15 +1,20 @@
-import os
 import subprocess
+import os
 
 
-class MacSystemEvent:
+class OsXSystemDriver:
+    debug = False
 
-    def __init__(self):
-        pass
+    ARROW_LEFT_CODE = 123
+    ARROW_RIGHT_CODE = 124
+    ARROW_DOWN_CODE = 125
+    ARROW_UP_CODE = 126
+
+    def __init__(self, debug=False):
+        self.debug = debug
 
     def pressButton(self, key, using):
-
-        if key in [123, 124, 125, 126]:
+        if key in [self.ARROW_LEFT_CODE, self.ARROW_RIGHT_CODE, self.ARROW_DOWN_CODE, self.ARROW_UP_CODE]:
             cmd = """
                 osascript -e '
                     tell application "System Events"
@@ -23,7 +28,10 @@ class MacSystemEvent:
                     tell application "System Events" to keystroke \"""" + key + """\" """ + using + """
                 '
             """
-        print(cmd)
+
+        if self.debug:
+            print(cmd)
+
         os.system(cmd)
 
     def openApp(self, app_id):
@@ -43,4 +51,4 @@ class MacSystemEvent:
             end tell
         """
         appName = subprocess.check_output(['osascript', '-e', cmd])
-        return appName.decode('UTF-8')
+        return appName.decode('UTF-8').rstrip()

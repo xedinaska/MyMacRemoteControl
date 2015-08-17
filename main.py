@@ -1,20 +1,22 @@
 import serial
 import time
-from KeyPressHandler import KeyPressHandler
-from KeyCodesParser import KeyCodesParser
+#from KeyPressHandler import KeyPressHandler
+from HashCodeReader import HashCodeReader
+from OsResolver import OsResolver
 
 port = '/dev/tty.wchusbserial1d1110'
 arduinoSerial = serial.Serial(port, 9600, timeout=0)
 
-keyCodesParser = KeyCodesParser()
-handler = KeyPressHandler()
+keyCodesReader = HashCodeReader()
+osResolver = OsResolver()
 
 while 1:
     try:
-        code = arduinoSerial.readline()
-        keyName = keyCodesParser.getKeyName(code)
+        hashCode = arduinoSerial.readline()
+        strCode = keyCodesReader.getKeyName(hashCode)
 
-        print(handler.handle(keyName))
+        applicationsManager = osResolver.getApplicationsManager()
+        applicationsManager.handle(strCode)
 
     except Exception as e:
         print(str(e))
